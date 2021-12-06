@@ -18,6 +18,7 @@ IP=$(ip -4 addr | sed -ne 's|^.* inet \([^/]*\)/.* scope global.*$|\1|p' | head 
 while [ $select -ne 4 ]; do
 
 echo "Opciones"
+echo "0. Creacion de archivos necesarios"
 echo "1. Configuracion inicial (Basica)"
 echo "2. Configuracion Avanzada"
 echo "3. Iniciar Servidor"
@@ -26,27 +27,40 @@ read -p "Seleccione su funcion: " select
 
 	case $select in
 
-	1)
+	0)
 		clear
+
 		#Verificacion de aceptacion de eula, en caso de no existir se creara
 
-		EULA=~/script/eula.txt
+		echo "Verificando existencia EULA"
+
+		EULA=$(pwd)/eula.txt
 		if [ -f $EULA ]
 			then
 			sed -i 's/eula=false/eula=true/' eula.txt
 			else
 			java -Xmx1024M -Xms1024M -jar server.jar
-			sed -i 's/eula=false/eula=true/' eula.txt
+			sed -i 's/eula=.*/eula=true/' eula.txt
 		fi
+		clear
+		echo "Archivos creados exitosamente"
+		sleep 1
+		clear
+	;;
+
+	1)
+		clear
+		echo "Configuracion Inicial"
+		sleep 2
 		clear
 
 		#Modificacion del archivo server.properties
 
-		confirm="n"
-		confirmn="n"
-		confirmy="y"
-		until [ $confirm = $confirmy ]
-			do
+		confirm=1
+
+		while [ $confirm -ne 0 ]; 
+				do
+
 				read -p "Escriba el Nombre de su servidor: " sname
 				clear
 				read -p "Escriba la dificultad (easy) (nomal) (hard): " dname
@@ -66,25 +80,48 @@ read -p "Seleccione su funcion: " select
 				echo "Puerto = $pname"
 				echo "Distancia de Vision = $vname chunks"
 				echo "Distancia de Simulacion = $xname chuks"
-				read -p "Los parametros son correctos? (y o n): " confirm
-			done
-		#Aplicacion de cambios en server.properties
+				
+				clear
+				echo "Los parametros son correctos?" 
+				echo "1.Incorrectos"
+				echo "0.Correctos"
 
-		sed -i "s/motd=.*/motd=$sname/" server.properties
-		sed -i "s/difficulty=.*/difficulty=$dname/" server.properties
-		sed -i "s/online-mode=.*/donline-mode=$oname/" server.properties
-		sed -i "s/server-port=.*/server-port=$pname/" server.properties
-		sed -i "s/view-distance=.*/view-distance=$vname/" server.properties
-		sed -i "s/simulation-distance=.*/simulation-distance=$xname/" server.properties
-		clear
-		echo "Configuracion inicial exitosa, si desea realice la configuracion avanzada si no ya esta disponible para jugar!"
-		sleep 5
-		clear
+				read -p "Ingrese su respuesta: " confirm
+			case $confirm in	
+				1)
+					echo "Porfavor reingrese los parametros."
+					sleep 2
+				;;
+				0)
+				;;
+				*)
+				echo "Opcion Invalida, intente nuevamente"
+				;;
+			esac
+		done
+		#Aplicacion de cambios en server.properties
+					sed -i "s/motd=.*/motd=$sname/" server.properties
+					sed -i "s/difficulty=.*/difficulty=$dname/" server.properties
+					sed -i "s/online-mode=.*/donline-mode=$oname/" server.properties
+					sed -i "s/server-port=.*/server-port=$pname/" server.properties
+					sed -i "s/view-distance=.*/view-distance=$vname/" server.properties
+					sed -i "s/simulation-distance=.*/simulation-distance=$xname/" server.properties
+					clear
+					echo "Configuracion inicial exitosa, si desea realice la configuracion avanzada si no ya esta disponible para jugar!"
+					sleep 5
+					clear
 	;;
 
 	2)
 		clear
-		echo "opcion 2"
+		
+		echo "Configuracion Avanzada"
+
+
+
+
+
+
 		sleep 5
 		clear
 	;;
