@@ -75,3 +75,16 @@ if [ $confirm = $confirmn ]
 			echo "shupala"
 		fi
 fi
+
+
+
+#aplicacion de los cambios
+
+sed -i 's/motd=A Minecraft Server/motd=$sname/' server.properties
+sed -i 's/difficulty=easy/difficulty=$dname/' server.properties
+sed -i 's/online-mode=true/donline-mode=$oname/' server.properties
+sed -i 's/server-port=25565/server-port=$pname/' server.properties
+sed -i 's/view-distance=10/view-distance=$vname/' server.properties
+sed -i 's/simulation-distance=10/simulation-distance=$xname/' server.properties
+
+
