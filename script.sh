@@ -103,7 +103,7 @@ while [ $select -ne 4 ];
 			clear
 			echo "Configuracion Avanzada"
 			conf=8
-			while [ $conf -ne 0 ]; do
+			while [ $conf -ne 8 ]; do
 				echo "parametros a modificar: "
 				echo "0. motd"
 				echo "1. gamemode"
@@ -126,7 +126,7 @@ while [ $select -ne 4 ];
 				;;
 				1)
 					echo "Ingrese modo de juego"
-					read -p "(spectator) (survival) (creative) (adventure) : " cgame
+					read -p "(spectator) (survival) (creative) (advenzture) : " cgame
 					sed -i "s/gamemode=.*/gamemode=$cgame/" server.properties
 					clear
 					echo "Opcion guardada correctamente"
@@ -201,9 +201,24 @@ while [ $select -ne 4 ];
 		;;
 		3)
 			clear
-			echo "opcion 3"
-			sleep 5
-			clear
+			echo "Iniciar Servidor"
+			sleep 1
+			echo "Memoria RAM para asignar"
+			read -p "Ingrese cantidad en M (ej: 3072M): ) " cram
+			sleep 1
+			echo "Atencion, entrara a la consola de administracion del servidor"
+			echo "Para detenerlo presionar Crtl + C"
+			echo "El servidor se iniciara en:"
+			sleep 1
+			echo "3"
+			sleep 1
+			echo "2"
+			sleep 1
+			echo "1"
+			
+
+
+			java -Xmx$cram -Xms$cram -jar server.jar nogui
 		;;
 		4)
 		;;
