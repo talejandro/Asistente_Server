@@ -102,7 +102,7 @@ while [ $select -ne 4 ];
 		2)
 			clear
 			echo "Configuracion Avanzada"
-			conf=8
+			conf=9
 			while [ $conf -ne 8 ]; do
 				echo "parametros a modificar: "
 				echo "0. motd"
