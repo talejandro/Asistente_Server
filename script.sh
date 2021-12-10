@@ -1,39 +1,39 @@
 #/bin/bash
 
-#Presentacion del script
-
+#Script presentation
 clear
-echo "Bienvenido al asistente de configuracion"
+echo "Welcome to the setap wizard"
 sleep 2
-echo "Desarrollado por Mi >:D"
+echo "By Talejandro"
 sleep 2
 clear
 
 
 select=0
-#ip del cliente
+#User IP
 
+cport="25565"
 IP=$(ip -4 addr | sed -ne 's|^.* inet \([^/]*\)/.* scope global.*$|\1|p' | head -1)
 
 while [ $select -ne 4 ]; 
 	do
 
-	echo "Opciones"
-	echo "0. Creacion de archivos necesarios"
-	echo "1. Configuracion Rapida (Basica)"
-	echo "2. Configuracion Avanzada"
-	echo "3. Iniciar Servidor"
+	echo "Menu"
+	echo "0. Creation of necessary files"
+	echo "1. Quick setup (Basic)"
+	echo "2. Advanced setup"
+	echo "3. Start Server"
 	echo "4. Exit"
-	read -p "Seleccione su funcion: " select
+	read -p "Select an option: " select
 
 	case $select in
 
 		0)
 			clear
 
-			#Verificacion de aceptacion de eula, en caso de no existir se creara
+			#Verification of eula, if it does not exist, it will be created
 
-			echo "Verificando existencia EULA"
+			echo "Checking EULA file"
 
 			EULA=$(pwd)/eula.txt
 			if [ -f $EULA ]
@@ -44,188 +44,203 @@ while [ $select -ne 4 ];
 				sed -i 's/eula=.*/eula=true/' eula.txt
 			fi
 			clear
-			echo "Archivos creados exitosamente"
+			echo "Files successfully created"
 			sleep 1
 			clear
 		;;
 
 		1)
 			clear
-			echo "Configuracion Rapida"
+			echo "Quick setup"
 			sleep 2
 			clear
 
-			#Modificacion del archivo server.properties
+			#Modification of the server.properties file
 
-			confirm=1
+			confirm=3
 
-			while [ $confirm -ne 0 ]; 
+			while [ $confirm -ne 1 ]; 
 				do
 
-				read -p "Escriba el Nombre de su servidor: " sname
+				read -p "Name server: " sname
 				clear
-				read -p "Escriba la dificultad (easy) (nomal) (hard): " dname
+				read -p "Dufficulty (easy) (nomal) (hard): " dname
 				clear
-				read -p "Servidor premium si ->(true) no ->(false): " oname
+				read -p "Premium server yes ->(true) no ->(false): " oname
 				clear
-				echo "Confirme configuracion: "
-				echo "Nombre servidor = $sname"
-				echo "Dificultad = $dname"
-				echo "Servidor Premium = $oname"
-				echo "Los parametros son correctos?" 
-				echo "1.Incorrectos"
-				echo "0.Correctos"
+				echo "Confirm configuration: "
+				echo "Name server = $sname"
+				echo "Dufficulty = $dname"
+				echo "Premiun Server = $oname"
+				echo "The configuration is correct?" 
+				echo "1.YES"
+				echo "0.NO"
 
-				read -p "Ingrese su respuesta: " confirm
+				read -p "Answer: " confirm
 			case $confirm in	
-				1)
-					echo "Porfavor reingrese los parametros."
+				0)
+					echo "Please, re-enter the parameters."
 					sleep 2
 				;;
-				0)
+				1)
 				;;
 				*)
-				echo "Opcion Invalida, intente nuevamente"
+				echo "Invalid option, try again"
 				;;
 			esac
 			done
-			#Aplicacion de cambios en server.properties
+			#Applying changes to server.properties
 				sed -i "s/motd=.*/motd=$sname/" server.properties
 				sed -i "s/difficulty=.*/difficulty=$dname/" server.properties
 				sed -i "s/online-mode=.*/online-mode=$oname/" server.properties
 				clear
-				echo "Configuracion inicial exitosa, si desea realice la configuracion avanzada si no ya esta disponible para jugar!"
-				sleep 5
+				echo "Quick setup successful"
+				sleep 3
 				clear
 			;;
 
 		2)
 			clear
-			echo "Configuracion Avanzada"
-			conf=9
-			while [ $conf -ne 8 ]; do
-				echo "parametros a modificar: "
-				echo "0. motd"
-				echo "1. gamemode"
-				echo "2. difficulty"
-				echo "3. pvp"
-				echo "4. server-port"
-				echo "5. view-distance"
-				echo "6. simulation-distance"
-				echo "7. hardcore"
-				echo "8. Menu"
-				read -p "Ingrese opcion: " conf
+			echo "Advanced setup"
+			conf=10
+			while [ $conf -ne 9 ]; do
+				echo "Options : "
+				echo "0. Name"
+				echo "1. Game mode"
+				echo "2. Difficulty"
+				echo "3. Pvp"
+				echo "4. Server port"
+				echo "5. View Distance"
+				echo "6. Simulation Distance"
+				echo "7. Hardcore mode"
+				echo "8. Premium mode"
+				echo "9. Menu"
+				read -p "Insert an option : " conf
 				case $conf in
 				0)
-					echo "Ingrese nombre del servidor"
+					echo "Enter name server."
 					read -p "(Nombre) : " cname
 					sed -i "s/motd=.*/motd=$cname/" server.properties
 					clear
-					echo "Opcion guardada correctamente"
+					echo "Option saved correctly"
 					sleep 1
 				;;
 				1)
-					echo "Ingrese modo de juego"
+					echo "Enter gamemode."
 					read -p "(spectator) (survival) (creative) (advenzture) : " cgame
 					sed -i "s/gamemode=.*/gamemode=$cgame/" server.properties
 					clear
-					echo "Opcion guardada correctamente"
+					echo "Option saved correctly"
 					sleep 1
 				;;
 
 				2)
 
-					echo "Ingrese dificultad"
+					echo "Enter difficulty."
 					read -p "(hard) (normal) (easy) : " cdiff
 					sed -i "s/difficulty=.*/difficulty=$cdiff/" server.properties
 					clear
-					echo "Opcion guardada correctamente"
+					echo "Option saved correctly"
 					sleep 1
 				;;
 
 				3)
-					echo "Player vs Player"
+					echo "Player vs Player."
 					read -p "(true) (false) : " copvp
 					sed -i "s/pvp=.*/pvp=$copvp/" server.properties
 					clear
-					echo "Opcion guardada correctamente"
+					echo "Option saved correctly"
 					sleep 1
 				;;
 
 				4)
-					echo "Ingrese puerto a utilizar"
-					read -p "(default: 25565) : " cport
+					echo "Enter port."
+					read -p "(default: 25565): " cport
 					sed -i "s/server-port=.*/server-port=$cport/" server.properties
 					clear
-					echo "Opcion guardada correctamente"
+					echo "Option saved correctly"
 					sleep 1
 				;;
 
 				5)
-					echo "Ingrese distancia de renderizado"
-					read -p "(numero de chunks) : " cview
+					echo "Enter view distance."
+					read -p "(numero de chunks): " cview
 					sed -i "s/view-distance=.*/view-distance=$cview/" server.properties
 					clear
-					echo "Opcion guardada correctamente"
+					echo "Option saved correctly"
 					sleep 1
 				;;
 
 				6)
-					echo "Ingrese distancia de simulacion"
-					read -p "(numero de chunks) : " csimu
+					echo "Enter simulation distance."
+					read -p "(numero de chunks): " csimu
 					sed -i "s/simulation-distance=.*/simulation-distance=$csimu/" server.properties
 					clear
-					echo "Opcion guardada correctamente"
+					echo "Option saved correctly"
 					sleep 1
+
 				;;
 
 				7)
-					echo "Activar modo hardcore?"
+					echo "Hardcore mode."
 					read -p "(true) (false): " chard
 					sed -i "s/hardcore=.*/hardcore=$chard/" server.properties
 					clear
-					echo "Opcion guardada correctamente"
+					echo "Option saved correctly"
 					sleep 1
 				;;
 
-				8)	
+				8)
+					echo "Premium mode?"
+					read -p "(true) (false): "
+					sed -i "s/online-mode=.*/online-mode=$oname/" server.properties	
+					clear
+					echo "Option saved correctly"
+					sleep 1
 				;;
-
+				9)
+				;;
 				*)
-				echo "Ingrese una ocion valida"
+				echo "$oname is't an option, try again!"
 				;;
 				esac	
 			done
-				sleep 5
+				sleep 2
 				clear
 		;;
 		3)
+			#run server
 			clear
-			echo "Iniciar Servidor"
+			echo "Run Server"
 			sleep 1
-			echo "Memoria RAM para asignar"
-			read -p "Ingrese cantidad en M (ej: 3072M): ) " cram
+			echo "Allocate RAM: "
+			read -p "Enter number in M (ex: 3072M): " cram
 			sleep 1
-			echo "Atencion, entrara a la consola de administracion del servidor"
-			echo "Para detenerlo presionar Crtl + C"
-			echo "El servidor se iniciara en:"
+			echo "Attention!!!, you will enter on the server administration console."
 			sleep 1
-			echo "3"
+			echo "To stop it press Crtl + C"
 			sleep 1
-			echo "2"
+			echo "-----Remember connect to $IP:$cport-----"
 			sleep 1
-			echo "1"
+			echo "The server stars, in..."
+			sleep 1
+			echo "3..."
+			sleep 1
+			echo "2..."
+			sleep 1
+			echo "1..."
 			
 
 
 			java -Xmx$cram -Xms$cram -jar server.jar nogui
 		;;
 		4)
+			clear
 		;;
 			*)
 			clear
-			echo "$select no es una opcion, intente nuevamente"
-			sleep 5
+			echo "$select is't an option, try again!"
+			sleep 3
 			clear
 	;;
 	esac
