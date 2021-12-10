@@ -22,6 +22,8 @@ This repository has a jar server to Minecraft 1.18 and the setup wizard script f
 
 5. When the script starts, you will have to choose the option you want.
 
+![menu](https://user-images.githubusercontent.com/39777824/145598160-561118a7-b2bb-4ae5-a9a3-4ee23b977410.png)
+
 **Recommendations**
  
 
