@@ -9,7 +9,7 @@ sleep 2
 clear
 
 
-select=0
+select=5
 #User IP
 
 cport="25565"
