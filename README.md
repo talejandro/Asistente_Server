@@ -27,9 +27,9 @@ This repository has a jar server to Minecraft 1.18 and the setup wizard script f
 
  - You would have to start with **option 0** (Creation of necessary
    files), because without the files it will not work.
- - When you have finished **option 0**. if you want you can configure
+ - When you have finished **option 0**, if you want you can configure
    the server with **option 1** (Quick setup) this is basic or with
    **option 2** (Advanced setup).
- - Finally to run the server you will use **option 3** (Start Server).
-   If you want to stop the server use **Ctrl + C** and you will return
+ - Finally to run the server you will use **option 3** (Start Server),
+   if you want to stop the server use **Ctrl + C** and you will return
    to the main menu.
