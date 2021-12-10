@@ -4,15 +4,15 @@ This repository has a jar server to Minecraft 1.18 and the setup wizard script f
 
 **First Steps:**
 
-1. You have to clone the repository: 
+1. Clone the repository: 
 
 > git clone https://github.com/talejandro/minecraft_1.18_server_setup_wizard
 
-2. You have to go to the created directory: 
+2. Go to the created directory: 
 
 > cd minecraft_1.18_server_setup_wizard/
 
-3. You have to give the script execution permission: 
+3. Give the script execution permission: 
 
 > chmod +x ms_setup_wizard.sh
 
