@@ -28,7 +28,7 @@ This repository has a jar server to Minecraft 1.18 and the setup wizard script f
  
 
  - You would have to start with **option 0** (Creation of necessary
-   files), because without the files it will not work.
+   files), because without the files it won't work.
  - When you have finished **option 0**, if you want you can configure
    the server with **option 1** (Quick setup) this is basic or with
    **option 2** (Advanced setup).
