@@ -1,5 +1,4 @@
 # Asistente_Server
-Hello, this is my first public script, it's a Minecraft Server setup wizard.
-It isn't complex, but functional.
-Later I'll create an English version for a more global use.
-<3
+This is a minecraft server setup wizard.
+This repository has a jar server to minecraft 1.18 and the setup wizard script.
+1. You have to clone the repository: git clone https://github.com/talejandro/minecraft_server_setup_wizard
