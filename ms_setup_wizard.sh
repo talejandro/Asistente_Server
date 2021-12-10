@@ -2,7 +2,7 @@
 
 #Script presentation
 clear
-echo "Welcome to the setap wizard"
+echo "Welcome to the Minnecraft Server setup wizard"
 sleep 2
 echo "By Talejandro"
 sleep 2
