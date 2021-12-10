@@ -2,7 +2,7 @@
 
 #Script presentation
 clear
-echo "Welcome to the Minnecraft Server setup wizard"
+echo "Welcome to the Minecraft Server setup wizard"
 sleep 2
 echo "By Talejandro"
 sleep 2
@@ -18,7 +18,7 @@ IP=$(ip -4 addr | sed -ne 's|^.* inet \([^/]*\)/.* scope global.*$|\1|p' | head 
 while [ $select -ne 4 ]; 
 	do
 
-	echo "Menu"
+	echo "Main menu"
 	echo "0. Creation of necessary files"
 	echo "1. Quick setup (Basic)"
 	echo "2. Advanced setup"
