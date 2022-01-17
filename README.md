@@ -1,4 +1,4 @@
-# MSSW 1.18
+# Minecraft 1.18 Server Setup Wizard
 
 This repository has a jar server to Minecraft 1.18 and the setup wizard script for Linux.
 
